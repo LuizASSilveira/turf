@@ -1,25 +1,25 @@
-import node from 'rollup-plugin-node-resolve'
-import commonjs from 'rollup-plugin-commonjs'
-import butternut from 'rollup-plugin-butternut'
+const node = require('rollup-plugin-node-resolve');
+const commonjs = require('rollup-plugin-commonjs');
+const butternut = require('rollup-plugin-butternut');
+const pckg = require('./package');
 
-const pckg = require('./package')
-const input = 'src/index.js'
+const input = 'src/index.js';
 
-export default [{
+module.exports = [
+  {
     input,
     output: [
-        {file: pckg.main, format: 'umd', name: 'turf'},
-        {file: 'dist/turf.es.js', format: 'es'}
+      { file: pckg.main, format: 'umd', name: 'turf' },
+      { file: 'dist/turf.es.js', format: 'es' }
     ],
-    plugins: [node(), commonjs({
-      include: 'node_modules/**'
-    })]
+    plugins: [node(), commonjs({ include: 'node_modules/**' })]
   }
+  // You can add additional configurations here if needed
   // {
   //   input,
   //   output: [
   //       {file: pckg.browser, format: 'umd', name: 'turf'}
   //   ],
   //   plugins: [node(), commonjs(), butternut()]
-  //   }
+  // }
 ];
